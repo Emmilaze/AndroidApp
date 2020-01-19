@@ -18,7 +18,7 @@ public class Browser {
     }
 
     public void openPage(String page){
-        driver.get(page);
+        driver.navigate().to(page);
         WebElement element;
         do {
             try {

@@ -25,25 +25,27 @@ public class FileManager {
     public boolean needUpdate(String date) {
         if (!isExistFile(uahCurrencyFile.file)) {
             createFile(uahCurrencyFile.file);
+            createFile(euroCurrencyFile.file);
+            createFile(usdCurrencyFile.file);
+            createFile(dateFile.file);
             return true;
         }
         if (!isExistFile(euroCurrencyFile.file)) {
             createFile(euroCurrencyFile.file);
+            createFile(usdCurrencyFile.file);
+            createFile(dateFile.file);
             return true;
         }
         if (!isExistFile(usdCurrencyFile.file)) {
             createFile(usdCurrencyFile.file);
+            createFile(dateFile.file);
             return true;
         }
         if (!isExistFile(dateFile.file)) {
             createFile(dateFile.file);
             return true;
         } else {
-            if (dateFile.compareDate(date)) {
-                return false;
-            } else {
-                return true;
-            }
+            return !dateFile.compareDate(date);
         }
     }
 

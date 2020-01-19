@@ -11,18 +11,19 @@ public class Main {
         browser.setDriver();
         String date = browser.getDate("https://minfin.com.ua/deposits/rates/");
 
-
-//        browser.openPage("https://minfin.com.ua/deposits/rates/?currency-type=usd");
-//        ArrayList<Deposit> usdDeposit = browser.getDeposits("USD");
-//        browser.openPage("https://minfin.com.ua/deposits/rates/?currency-type=eur");
-//        ArrayList<Deposit> euroDeposit = browser.getDeposits("Euro");
         if(fileManager.needUpdate(date)){
             browser.openPage("https://minfin.com.ua/deposits/rates/");
             ArrayList<Deposit> uahDeposit = browser.getDeposits("UAH");
-            fileManager.updateFiles(date, uahDeposit, null, null);
+
+            browser.openPage("https://minfin.com.ua/deposits/rates/?currency-type=usd");
+            ArrayList<Deposit> usdDeposit = browser.getDeposits("USD");
+
+            browser.openPage("https://minfin.com.ua/deposits/rates/?currency-type=eur");
+            ArrayList<Deposit> euroDeposit = browser.getDeposits("Euro");
+
+            fileManager.updateFiles(date, uahDeposit, usdDeposit, euroDeposit);
         } else {
             System.out.println("dont need update");
         }
-
     }
 }
